@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Entity
-@ToString(of = {"id", "username", "userId", "email", "phoneNum"})
+@ToString(of = {"id", "username", "userId", "email", "tel"})
 public class Member {
     @Id
     @GeneratedValue
@@ -24,9 +24,9 @@ public class Member {
 
     private String email;
 
-    private String phoneNum;
+    private String tel;
 
     //일대다 관계
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 }
